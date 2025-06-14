@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a full-stack web application built with a React frontend and Express.js backend. The application uses a modern tech stack with TypeScript, Tailwind CSS with shadcn/ui components, Drizzle ORM for database operations, and PostgreSQL for data persistence. The project is structured as a monorepo with shared code between client and server.
+STILED is a full-stack styling platform that connects users with professional stylists. Built with React frontend and Express.js backend, it features stylist discovery, social feeds, and booking capabilities. The application uses TypeScript, Tailwind CSS with shadcn/ui components, Drizzle ORM for database operations, and in-memory storage for data persistence. The project is structured as a monorepo with shared code between client and server.
 
 ## System Architecture
 
@@ -24,8 +24,9 @@ This is a full-stack web application built with a React frontend and Express.js 
 ### Database Layer
 - **ORM**: Drizzle ORM with PostgreSQL dialect
 - **Schema Location**: `shared/schema.ts` for type-safe sharing between client and server
-- **Migrations**: Managed through Drizzle Kit with migrations stored in `./migrations`
-- **Current Schema**: Basic user management with username/password authentication
+- **Storage**: In-memory storage implementation with seeded data
+- **Current Schema**: Users, stylists, posts, and comments with relationships
+- **Features**: Stylist profiles, social posts, comments system, ratings
 
 ## Key Components
 
@@ -35,14 +36,16 @@ This is a full-stack web application built with a React frontend and Express.js 
 
 ### Client (`/client`)
 - **Entry Point**: `src/main.tsx` renders the React application
-- **Routing**: Wouter-based routing with a splash page and 404 fallback
+- **Routing**: Wouter-based routing with splash, get-started, home, and social pages
 - **State Management**: TanStack Query with custom query client configuration
 - **Components**: shadcn/ui component library with comprehensive UI primitives
-- **Styling**: Tailwind CSS with custom design tokens and variables
+- **Pages**: Splash screen, onboarding, stylist discovery, social feed with comments
+- **Styling**: Tailwind CSS with mobile-first design matching Figma specifications
 
 ### Server (`/server`)
 - **Entry Point**: `index.ts` sets up Express server with middleware
-- **Storage Interface**: Abstracted storage layer with in-memory implementation
+- **Storage Interface**: Abstracted storage layer with in-memory implementation and seeded data
+- **API Routes**: RESTful endpoints for stylists, posts, and comments
 - **Route Management**: Centralized route registration system
 - **Development**: Vite integration for HMR and development server
 
@@ -95,6 +98,12 @@ This is a full-stack web application built with a React frontend and Express.js 
 ```
 Changelog:
 - June 14, 2025. Initial setup
+- June 14, 2025. Migrated from Figma designs, implemented full STILED platform:
+  * Added stylist discovery with filtering capabilities
+  * Implemented social feed with posts and comments
+  * Created mobile-responsive UI matching Figma designs
+  * Added data models for stylists, posts, comments
+  * Implemented complete user flow from splash to social features
 ```
 
 ## User Preferences
