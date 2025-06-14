@@ -161,8 +161,9 @@ export class MemStorage implements IStorage {
   async createStylist(insertStylist: InsertStylist): Promise<Stylist> {
     const id = this.currentStylistId++;
     const stylist: Stylist = { 
-      ...insertStylist, 
       id,
+      userId: insertStylist.userId ?? null,
+      name: insertStylist.name,
       followers: insertStylist.followers || 0,
       rating: insertStylist.rating || 5,
       reviewCount: insertStylist.reviewCount || 0,
@@ -191,12 +192,12 @@ export class MemStorage implements IStorage {
   async createPost(insertPost: InsertPost): Promise<Post> {
     const id = this.currentPostId++;
     const post: Post = { 
-      ...insertPost, 
-      id, 
-      createdAt: new Date(),
-      likes: insertPost.likes || 0,
+      id,
       stylistId: insertPost.stylistId || null,
-      image: insertPost.image || null
+      content: insertPost.content,
+      image: insertPost.image || null,
+      likes: insertPost.likes || 0,
+      createdAt: new Date()
     };
     this.posts.set(id, post);
     return post;
@@ -212,12 +213,12 @@ export class MemStorage implements IStorage {
   async createComment(insertComment: InsertComment): Promise<Comment> {
     const id = this.currentCommentId++;
     const comment: Comment = { 
-      ...insertComment, 
-      id, 
-      createdAt: new Date(),
-      likes: insertComment.likes || 0,
+      id,
+      postId: insertComment.postId || null,
       userId: insertComment.userId || null,
-      postId: insertComment.postId || null
+      content: insertComment.content,
+      likes: insertComment.likes || 0,
+      createdAt: new Date()
     };
     this.comments.set(id, comment);
     return comment;
