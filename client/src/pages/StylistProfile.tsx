@@ -66,7 +66,10 @@ export default function StylistProfile() {
             <Button variant="outline" size="sm" className="bg-white">
               <Mail className="h-4 w-4 mr-2" />
             </Button>
-            <Button className="bg-blue-600 text-white px-6">
+            <Button 
+              className="bg-blue-600 text-white px-6"
+              onClick={() => setLocation(`/book/${stylist.id}`)}
+            >
               Book Now
             </Button>
           </div>

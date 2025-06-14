@@ -92,8 +92,10 @@ function FilterDialog({ children }: { children: React.ReactNode }) {
 
 // Stylist Card Component
 function StylistCard({ stylist }: { stylist: Stylist }) {
+  const [, setLocation] = useLocation();
+  
   return (
-    <Card className="overflow-hidden">
+    <Card className="overflow-hidden cursor-pointer hover:shadow-lg transition-shadow" onClick={() => setLocation(`/stylist/${stylist.id}`)}>
       <CardContent className="p-0">
         <div className="aspect-square overflow-hidden">
           <img
@@ -110,6 +112,16 @@ function StylistCard({ stylist }: { stylist: Stylist }) {
             <span className="text-sm font-medium">{stylist.rating}</span>
             <span className="text-sm text-gray-600">({stylist.reviewCount})</span>
           </div>
+          <Button 
+            className="w-full mt-3 bg-blue-600 text-white"
+            onClick={(e) => {
+              e.stopPropagation();
+              setLocation(`/book/${stylist.id}`);
+            }}
+            size="sm"
+          >
+            Book Now
+          </Button>
         </div>
       </CardContent>
     </Card>
@@ -227,8 +239,12 @@ export default function Home() {
           >
             <Plus className="h-5 w-5 text-gray-400" />
           </button>
-          <button className="flex flex-col items-center gap-1 py-2 px-4">
+          <button 
+            onClick={() => setLocation("/bookings")}
+            className="flex flex-col items-center gap-1 py-2 px-4"
+          >
             <Calendar className="h-5 w-5 text-gray-400" />
+            <span className="text-xs text-gray-400">Bookings</span>
           </button>
           <button 
             onClick={() => setLocation("/profile")}

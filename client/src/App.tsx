@@ -14,6 +14,8 @@ import NewPost from "@/pages/NewPost";
 import Profile from "@/pages/Profile";
 import StylistDashboard from "@/pages/StylistDashboard";
 import StylistProfile from "@/pages/StylistProfile";
+import BookStylist from "@/pages/BookStylist";
+import Bookings from "@/pages/Bookings";
 
 function Router() {
   return (
@@ -27,6 +29,8 @@ function Router() {
       <Route path="/profile" component={Profile} />
       <Route path="/stylist-dashboard" component={StylistDashboard} />
       <Route path="/stylist/:id" component={StylistProfile} />
+      <Route path="/book/:id" component={BookStylist} />
+      <Route path="/bookings" component={Bookings} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>
