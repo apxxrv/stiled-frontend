@@ -221,13 +221,19 @@ export default function Home() {
             <MessageCircle className="h-5 w-5 text-gray-400" />
             <span className="text-xs text-gray-400">Social</span>
           </button>
-          <button className="flex flex-col items-center gap-1 py-2 px-4">
+          <button 
+            onClick={() => setLocation("/new-post")}
+            className="flex flex-col items-center gap-1 py-2 px-4"
+          >
             <Plus className="h-5 w-5 text-gray-400" />
           </button>
           <button className="flex flex-col items-center gap-1 py-2 px-4">
             <Calendar className="h-5 w-5 text-gray-400" />
           </button>
-          <button className="flex flex-col items-center gap-1 py-2 px-4">
+          <button 
+            onClick={() => setLocation("/profile")}
+            className="flex flex-col items-center gap-1 py-2 px-4"
+          >
             <User className="h-5 w-5 text-gray-400" />
           </button>
         </div>

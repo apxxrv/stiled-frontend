@@ -9,6 +9,11 @@ import { Splash } from "@/pages/Splash";
 import GetStarted from "@/pages/GetStarted";
 import Home from "@/pages/Home";
 import Social from "@/pages/Social";
+import UploadMedia from "@/pages/UploadMedia";
+import NewPost from "@/pages/NewPost";
+import Profile from "@/pages/Profile";
+import StylistDashboard from "@/pages/StylistDashboard";
+import StylistProfile from "@/pages/StylistProfile";
 
 function Router() {
   return (
@@ -17,6 +22,11 @@ function Router() {
       <Route path="/get-started" component={GetStarted} />
       <Route path="/home" component={Home} />
       <Route path="/social" component={Social} />
+      <Route path="/upload-media" component={UploadMedia} />
+      <Route path="/new-post" component={NewPost} />
+      <Route path="/profile" component={Profile} />
+      <Route path="/stylist-dashboard" component={StylistDashboard} />
+      <Route path="/stylist/:id" component={StylistProfile} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>

@@ -358,13 +358,19 @@ export default function Social() {
             <div className="h-6 w-6 rounded-full bg-blue-600"></div>
             <span className="text-xs">Social</span>
           </button>
-          <button className="flex flex-col items-center gap-1 py-2 px-4">
+          <button 
+            onClick={() => setLocation("/new-post")}
+            className="flex flex-col items-center gap-1 py-2 px-4"
+          >
             <Plus className="h-5 w-5 text-gray-400" />
           </button>
           <button className="flex flex-col items-center gap-1 py-2 px-4">
             <Calendar className="h-5 w-5 text-gray-400" />
           </button>
-          <button className="flex flex-col items-center gap-1 py-2 px-4">
+          <button 
+            onClick={() => setLocation("/profile")}
+            className="flex flex-col items-center gap-1 py-2 px-4"
+          >
             <User className="h-5 w-5 text-gray-400" />
           </button>
         </div>
