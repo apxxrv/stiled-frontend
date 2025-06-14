@@ -132,6 +132,54 @@ function CommentsDialog({ post, children }: { post: Post; children: React.ReactN
   );
 }
 
+// News Card Component  
+function NewsCard({ news }: { news: any }) {
+  return (
+    <Card className="border-0 border-b border-gray-100 rounded-none">
+      <CardContent className="p-4">
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-3">
+            <img
+              src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=40&h=40&fit=crop&crop=face"
+              alt={news.author}
+              className="h-8 w-8 rounded-full object-cover"
+            />
+            <div>
+              <span className="font-medium text-sm">{news.author}</span>
+              <p className="text-xs text-gray-500">1 min ago</p>
+            </div>
+          </div>
+          <Button variant="ghost" size="icon">
+            <MoreHorizontal className="h-4 w-4" />
+          </Button>
+        </div>
+
+        <div className="mb-3">
+          <h3 className="font-medium mb-2">{news.title}</h3>
+          <p className="text-sm text-gray-700 leading-relaxed">{news.content}</p>
+          {news.hashtags && (
+            <p className="text-sm text-blue-600 mt-2">{news.hashtags}</p>
+          )}
+        </div>
+
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <Button variant="ghost" size="icon" className="h-8 w-8">
+              <Heart className="h-5 w-5" />
+            </Button>
+            <Button variant="ghost" size="icon" className="h-8 w-8">
+              <MessageCircle className="h-5 w-5" />
+            </Button>
+          </div>
+          <Button variant="ghost" size="icon" className="h-8 w-8">
+            <Bookmark className="h-5 w-5" />
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
 // Post Card Component
 function PostCard({ post }: { post: Post }) {
   const { data: stylists = [] } = useQuery<Stylist[]>({
@@ -223,6 +271,24 @@ export default function Social() {
     queryKey: ["/api/posts"],
   });
 
+  // Mock news data
+  const newsItems = [
+    {
+      id: 1,
+      author: "Etheral Fashion",
+      title: "🎥New Virtual Consultation Tool📹",
+      content: "We're excited to introduce Virtual Styling Consultations! Now, clients can book virtual sessions with their favorite stylists via video calls. Upgrade your profile today and start offering virtual services!",
+      hashtags: "#StylistTools #VirtualStyling"
+    },
+    {
+      id: 2,
+      author: "STILED",
+      title: "Great news!",
+      content: "The STILED Referral Program is now live. Invite your stylist friends and earn exclusive perks for each successful signup!",
+      hashtags: ""
+    }
+  ];
+
   return (
     <div className="flex min-h-screen flex-col bg-white">
       {/* Header */}
@@ -249,22 +315,30 @@ export default function Social() {
         </div>
       </div>
 
-      {/* Posts */}
+      {/* Content */}
       <div className="flex-1 overflow-y-auto pb-20">
-        {isLoading ? (
-          <div className="space-y-4 p-4">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="animate-pulse">
-                <div className="h-12 w-12 rounded-full bg-gray-200 mb-3"></div>
-                <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-                <div className="aspect-square bg-gray-200 rounded"></div>
-              </div>
-            ))}
-          </div>
+        {activeTab === "Feeds" ? (
+          isLoading ? (
+            <div className="space-y-4 p-4">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="animate-pulse">
+                  <div className="h-12 w-12 rounded-full bg-gray-200 mb-3"></div>
+                  <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+                  <div className="aspect-square bg-gray-200 rounded"></div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div>
+              {posts.map((post) => (
+                <PostCard key={post.id} post={post} />
+              ))}
+            </div>
+          )
         ) : (
           <div>
-            {posts.map((post) => (
-              <PostCard key={post.id} post={post} />
+            {newsItems.map((news) => (
+              <NewsCard key={news.id} news={news} />
             ))}
           </div>
         )}
